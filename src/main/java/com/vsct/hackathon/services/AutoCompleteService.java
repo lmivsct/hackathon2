@@ -17,7 +17,7 @@ import com.vsct.hackathon.services.utils.AutoCompleteUtils;
 public class AutoCompleteService {
 
     private static final Pattern p = Pattern.compile("(.+)>(.+)");
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    public static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @Autowired
     private CityService cityService;
@@ -46,37 +46,68 @@ public class AutoCompleteService {
                     if (destinations != null) {
                         for (String destination : destinations) {
                             final StringBuilder suggestEntry = new StringBuilder();
-                            suggestEntry.append("\"" + searchParameters.getOrigin() + " > " + destination + "\"");
+                            suggestEntry.append("\"" + searchParameters.getOrigin() + " > " + destination + " le " + dateFormat.format
+                                    (AutoCompleteUtils.getTomorrow()) +
+                                    "\"");
                             proposals.add(suggestEntry.toString());
                         }
                     } else {
-                        if (!searchParameters.getOrigin().equalsIgnoreCase("paris")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " > Paris le " + dateFormat.format(new Date()) + "\"");
+                        if (!searchParameters.getOrigin().toLowerCase().contains("paris")) {
+                            proposals.add("\"" + searchParameters.getOrigin() + " > Paris le " + dateFormat.format(AutoCompleteUtils.getTomorrow()) +
+                                    "\"");
                         }
-                        if (!searchParameters.getOrigin().equalsIgnoreCase("lyon")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " > Lyon le " + dateFormat.format(new Date()) + "\"");
+                        if (!searchParameters.getOrigin().toLowerCase().contains("lille")) {
+                            proposals.add("\"" + searchParameters.getOrigin() + " > Lille le " + dateFormat.format(AutoCompleteUtils.getTomorrow()) +
+                                    "\"");
                         }
-                        if (!searchParameters.getOrigin().equalsIgnoreCase("nantes")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " > Nantes le " + dateFormat.format(new Date()) + "\"");
+                        if (!searchParameters.getOrigin().toLowerCase().contains("lyon")) {
+                            proposals.add("\"" + searchParameters.getOrigin() + " > Lyon le " + dateFormat.format(AutoCompleteUtils.getTomorrow()) + "\"");
+                        }
+                        if (!searchParameters.getOrigin().toLowerCase().contains("nantes")) {
+                            proposals.add("\"" + searchParameters.getOrigin() + " > Nantes le " + dateFormat.format(AutoCompleteUtils.getTomorrow()) + "\"");
+                        }
+                        if (!searchParameters.getOrigin().toLowerCase().contains("rennes")) {
+                            proposals.add("\"" + searchParameters.getOrigin() + " > Rennes le " + dateFormat.format(AutoCompleteUtils.getTomorrow()
+                            ) + "\"");
                         }
                     }
                 } else {
-                    final ArrayList<String> originDests = new ArrayList<>();
-                    for (String origin : origins) {
-                        if (!origin.equalsIgnoreCase("paris")) {
-                            originDests.add(origin + " > Paris");
-                        } else {
-                            originDests.add(origin + " > Lyon");
+                    if (!input.contains(">")) {
+                        final ArrayList<String> originDests = new ArrayList<>();
+                        for (String origin : origins) {
+                            if (!origin.toLowerCase().contains("paris")) {
+                                originDests.add(origin + " > Paris le " + dateFormat.format(AutoCompleteUtils.getTomorrow()));
+                            } else {
+                                originDests.add(origin + " > Lyon le " + dateFormat.format(AutoCompleteUtils.getTomorrow()));
+                            }
                         }
+                        proposals.addAll(AutoCompleteUtils.convertListForSuggestion(originDests));
+                    } else {
+                        if (!searchParameters.getOrigin().toLowerCase().contains("paris")) {
+                            proposals.add("\"" + searchParameters.getOrigin() + " Paris le " + dateFormat.format(new Date()) + "\"");
+                        }
+                        if (!searchParameters.getOrigin().toLowerCase().contains("lyon")) {
+                            proposals.add("\"" + searchParameters.getOrigin() + " Lyon le " + dateFormat.format(new Date()) + "\"");
+                        }
+                        if (!searchParameters.getOrigin().toLowerCase().contains("lille")) {
+                            proposals.add("\"" + searchParameters.getOrigin() + " Lille le " + dateFormat.format(new Date()) + "\"");
+                        }
+                        if (!searchParameters.getOrigin().toLowerCase().contains("nantes")) {
+                            proposals.add("\"" + searchParameters.getOrigin() + " Nantes le " + dateFormat.format(new Date()) + "\"");
+                        }
+                        if (!searchParameters.getOrigin().toLowerCase().contains("rennes")) {
+                            proposals.add("\"" + searchParameters.getOrigin() + " Rennes le " + dateFormat.format(new Date()) + "\"");
+                        }
+
                     }
-                    proposals.addAll(AutoCompleteUtils.convertListForSuggestion(originDests));
                 }
 
             } else {
                 proposals.add("\"Paris > Lyon le " + dateFormat.format(new Date()) + "\"");
                 proposals.add("\"Paris > Lille le " + dateFormat.format(new Date()) + "\"");
-                proposals.add("\"Paris <> Nantes le " + dateFormat.format(new Date()) + "\"");
-                proposals.add("\"Paris <> Rennes le " + dateFormat.format(new Date()) + "\"");
+                proposals.add("\"Paris > Nantes le " + dateFormat.format(new Date()) + "\"");
+                proposals.add("\"Paris > Rennes le " + dateFormat.format(new Date()) + "\"");
+                proposals.add("\"Paris > Marseille le " + dateFormat.format(new Date()) + "\"");
             }
         }
         return proposals;

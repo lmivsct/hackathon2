@@ -1,6 +1,8 @@
 package com.vsct.hackathon.services.utils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -14,5 +16,13 @@ public class AutoCompleteUtils {
             newList.add("\""+item+"\"");
         }
         return newList;
+    }
+    
+    public static Date getTomorrow(){
+        Date today = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(today);
+        c.add(Calendar.DATE, 1);
+        return c.getTime();
     }
 }
