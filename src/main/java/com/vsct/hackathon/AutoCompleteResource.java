@@ -35,26 +35,6 @@ public class AutoCompleteResource {
                       
         suggests.add("\"Page d'aide\"");
         responseBuilder.append(suggests.toString());
-        responseBuilder.append(",");
-        final ArrayList<String> descriptions = new ArrayList<>();
-        for (int i = 0; i < suggests.size(); i++) {
-            descriptions.add("\"test\"");
-            if (i > 3) {
-                break;
-            }
-        }
-        descriptions.add("\"AIDE\"");
-        responseBuilder.append(descriptions.toString());
-        responseBuilder.append(",");
-        final ArrayList<String> urls = new ArrayList<>();
-        for (int i = 0; i < suggests.size(); i++) {
-            urls.add("\"http://localhost/index.html\"");
-            if (i > 3) {
-                break;
-            }
-        }
-        urls.add("\"http://localhost/index.html\"");
-        responseBuilder.append(urls.toString());
         responseBuilder.append("]");
 
         return Response.status(200).entity(responseBuilder.toString()).build();
