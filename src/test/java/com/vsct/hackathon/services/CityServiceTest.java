@@ -16,7 +16,9 @@ public class CityServiceTest {
     public void getOrigine() {
         List<String> result = cityService.getOrigine("Nantes");
         assertEquals("Nantes", result.get(0));
-        assertEquals("Nantes-En-Ratier", result.get(1));
+        assertEquals("Nantes (Commerce)", result.get(1));
+        assertEquals("Nantes Pirmil", result.get(2));
+        assertEquals("Nantes-En-Ratier", result.get(3));
     }
 
     @Test
