@@ -24,6 +24,6 @@ public class CityServiceTest {
     @Test
     public void getOrigine_avecEspaces() {
         List<String> result = cityService.getOrigine("Moutiers en Retz");
-        assertEquals("Les Moutiers-En-Retz", result.get(0));
+        assertEquals("Les Moutiers En Retz", result.get(0));
     }
 }

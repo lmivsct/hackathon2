@@ -1,10 +1,14 @@
 package com.vsct.hackathon.services;
 
+import java.math.BigDecimal;
 import java.net.URLEncoder;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
@@ -21,9 +25,7 @@ public class CityService {
     private static final String URL_BASE = "http://integration1.geo.vsct.fr:8001/geoWeb/autocomplete";
     private static final String LANGUAGE = "fr";
     private static final String COUNTRY = "fr";
-    private static final String CATEGORIES = "R-5,C-5"; // https://wiki.vsct.fr/pages/viewpage.action?pageId=91625049#GEO1
-    // .1-Serviceauto-complétion-Paramètres
-    // C = cities, 5 = 5 items max
+    private static final String CATEGORIES = "R-5,C-5"; // C = cities, R = railway, 5 = 5 items max
     private static final boolean ONLY_BOOKABLE_TRAIN = true;
 
     private Resty resty = new Resty();
@@ -61,11 +63,15 @@ public class CityService {
         try {
             for (int i = 0; i < localities.length(); i++) {
                 JSONObject locality = localities.getJSONObject(i);
-                int weight = locality.getInt("weight");
+                String score = locality.getString("score");
+                Number ddd = NumberFormat.getNumberInstance(Locale.ENGLISH).parse(score);
+                BigDecimal bgScore = new BigDecimal(ddd.toString());
                 String name = locality.getString("name");
-                cities.add(new Locality(name, weight));
+                cities.add(new Locality(name, bgScore));
             }
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return cities;

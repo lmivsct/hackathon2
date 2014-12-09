@@ -1,30 +1,24 @@
 package com.vsct.hackathon.services;
 
+import java.math.BigDecimal;
+
 /**
  * Created by erwann_plouhinec on 09/12/2014.
  */
 public class Locality {
     private String name;
-    private int weight;
+    private BigDecimal score;
 
-    Locality(final String name, final int weight) {
+    Locality(final String name, final BigDecimal score) {
         this.name = name;
-        this.weight = weight;
+        this.score = score;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(final int weight) {
-        this.weight = weight;
+    public BigDecimal getScore() {
+        return score;
     }
 }

@@ -8,6 +8,6 @@ import java.util.Comparator;
 public class LocalityComparator implements Comparator<Locality> {
     @Override
     public int compare(Locality o1, Locality o2) {
-        return new Integer(o1.getWeight()).compareTo(o2.getWeight());
+        return o2.getScore().compareTo(o1.getScore());
     }
 }
