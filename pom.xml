@@ -4,13 +4,13 @@
     <!-- ====================== -->
     <!-- = Project definition = -->
     <!-- ====================== -->
-	<groupId>hackathon</groupId>
+    <groupId>hackathon</groupId>
     <artifactId>hackathon-autocomplete</artifactId>
     <name>Hackaton autocomplete</name>
-	<version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-	
-	 <!-- ============== -->
+
+    <!-- ============== -->
     <!-- = Properties = -->
     <!-- ============== -->
     <properties>
@@ -373,8 +373,8 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-	
-	
+
+
     <!-- ================ -->
     <!-- = Dependencies = -->
     <!-- ================ -->
@@ -430,7 +430,6 @@
         </dependency>
 
 
-
         <!-- Commons dependencies -->
         <dependency>
             <groupId>commons-lang</groupId>
@@ -484,7 +483,7 @@
         </dependency>
 
         <!-- Test dependencies -->
-		<dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
@@ -496,6 +495,11 @@
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>us.monoid.web</groupId>
+            <artifactId>resty</artifactId>
+            <version>0.3.2</version>
         </dependency>
 
     </dependencies>
