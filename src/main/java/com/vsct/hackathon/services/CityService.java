@@ -3,12 +3,12 @@ package com.vsct.hackathon.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import us.monoid.web.Resty;
 
 
-/**
- * Created by erwann_plouhinec on 09/12/2014.
- */
+@Component
 public class CityService {
 
     private static final String URL_BASE = "http://integration1.geo.vsct.fr:8001/geoWeb/autocomplete";
