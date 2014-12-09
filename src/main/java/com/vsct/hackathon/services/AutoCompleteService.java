@@ -46,28 +46,28 @@ public class AutoCompleteService {
                     if (destinations != null) {
                         for (String destination : destinations) {
                             final StringBuilder suggestEntry = new StringBuilder();
-                            suggestEntry.append("\"" + searchParameters.getOrigin() + " > " + destination + " le " + dateFormat.format
+                            suggestEntry.append("\"" + searchParameters.getOrigin() + " > " + destination + " " + dateFormat.format
                                     (AutoCompleteUtils.getTomorrow()) +
                                     "\"");
                             proposals.add(suggestEntry.toString());
                         }
                     } else {
                         if (!searchParameters.getOrigin().toLowerCase().contains("paris")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " > Paris le " + dateFormat.format(AutoCompleteUtils.getTomorrow()) +
+                            proposals.add("\"" + searchParameters.getOrigin() + " > Paris " + dateFormat.format(AutoCompleteUtils.getTomorrow()) +
                                     "\"");
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("lille")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " > Lille le " + dateFormat.format(AutoCompleteUtils.getTomorrow()) +
+                            proposals.add("\"" + searchParameters.getOrigin() + " > Lille " + dateFormat.format(AutoCompleteUtils.getTomorrow()) +
                                     "\"");
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("lyon")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " > Lyon le " + dateFormat.format(AutoCompleteUtils.getTomorrow()) + "\"");
+                            proposals.add("\"" + searchParameters.getOrigin() + " > Lyon " + dateFormat.format(AutoCompleteUtils.getTomorrow()) + "\"");
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("nantes")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " > Nantes le " + dateFormat.format(AutoCompleteUtils.getTomorrow()) + "\"");
+                            proposals.add("\"" + searchParameters.getOrigin() + " > Nantes " + dateFormat.format(AutoCompleteUtils.getTomorrow()) + "\"");
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("rennes")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " > Rennes le " + dateFormat.format(AutoCompleteUtils.getTomorrow()
+                            proposals.add("\"" + searchParameters.getOrigin() + " > Rennes " + dateFormat.format(AutoCompleteUtils.getTomorrow()
                             ) + "\"");
                         }
                     }
@@ -76,38 +76,38 @@ public class AutoCompleteService {
                         final ArrayList<String> originDests = new ArrayList<>();
                         for (String origin : origins) {
                             if (!origin.toLowerCase().contains("paris")) {
-                                originDests.add(origin + " > Paris le " + dateFormat.format(AutoCompleteUtils.getTomorrow()));
+                                originDests.add(origin + " > Paris " + dateFormat.format(AutoCompleteUtils.getTomorrow()));
                             } else {
-                                originDests.add(origin + " > Lyon le " + dateFormat.format(AutoCompleteUtils.getTomorrow()));
+                                originDests.add(origin + " > Lyon " + dateFormat.format(AutoCompleteUtils.getTomorrow()));
                             }
                         }
                         proposals.addAll(AutoCompleteUtils.convertListForSuggestion(originDests));
                     } else {
                         if (!searchParameters.getOrigin().toLowerCase().contains("paris")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " Paris le " + dateFormat.format(new Date()) + "\"");
+                            proposals.add("\"" + searchParameters.getOrigin() + " Paris " + dateFormat.format(new Date()) + "\"");
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("lyon")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " Lyon le " + dateFormat.format(new Date()) + "\"");
+                            proposals.add("\"" + searchParameters.getOrigin() + " Lyon " + dateFormat.format(new Date()) + "\"");
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("lille")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " Lille le " + dateFormat.format(new Date()) + "\"");
+                            proposals.add("\"" + searchParameters.getOrigin() + " Lille " + dateFormat.format(new Date()) + "\"");
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("nantes")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " Nantes le " + dateFormat.format(new Date()) + "\"");
+                            proposals.add("\"" + searchParameters.getOrigin() + " Nantes " + dateFormat.format(new Date()) + "\"");
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("rennes")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " Rennes le " + dateFormat.format(new Date()) + "\"");
+                            proposals.add("\"" + searchParameters.getOrigin() + " Rennes " + dateFormat.format(new Date()) + "\"");
                         }
 
                     }
                 }
 
             } else {
-                proposals.add("\"Paris > Lyon le " + dateFormat.format(new Date()) + "\"");
-                proposals.add("\"Paris > Lille le " + dateFormat.format(new Date()) + "\"");
-                proposals.add("\"Paris > Nantes le " + dateFormat.format(new Date()) + "\"");
-                proposals.add("\"Paris > Rennes le " + dateFormat.format(new Date()) + "\"");
-                proposals.add("\"Paris > Marseille le " + dateFormat.format(new Date()) + "\"");
+                proposals.add("\"Paris > Lyon " + dateFormat.format(new Date()) + "\"");
+                proposals.add("\"Paris > Lille " + dateFormat.format(new Date()) + "\"");
+                proposals.add("\"Paris > Nantes " + dateFormat.format(new Date()) + "\"");
+                proposals.add("\"Paris > Rennes " + dateFormat.format(new Date()) + "\"");
+                proposals.add("\"Paris > Marseille " + dateFormat.format(new Date()) + "\"");
             }
         }
         return proposals;

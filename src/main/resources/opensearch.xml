@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+					   xmlns:geo="http://a9.com/-/opensearch/extensions/geo/1.0/">
+  <ShortName>Voyages-sncf.com</ShortName>
+  <Description>Recherche de trajets</Description>
+  <Image width="16" height="16" type="image/x-icon">http://localhost:80/vsc.jpg</Image>
+  <Language>fr</Language>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Url type="text/html" method="GET" template="http://dev.voyages-sncf.com:8080/vsc/train-ticket/searchTravelFromSB?search={searchTerms}"/>
+  <Url type="application/x-suggestions+json" method ="GET" template="http://192.168.10.95:8080/rs/autocomplete?query={searchTerms}&amp;PASSENGER_1=ADULT&amp;lat={geo:lat?}&amp;lon={geo:lon?}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="http://localhost:80/opensearch.xml" />
+</OpenSearchDescription>
