@@ -6,6 +6,10 @@
 
     <display-name>Hackathon Autocomplete</display-name>
 
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+    
     <servlet>
         <description>JAX-RS servlet</description>
         <servlet-name>javax.ws.rs.core.Application</servlet-name>
