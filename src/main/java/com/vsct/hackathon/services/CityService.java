@@ -43,8 +43,9 @@ public class CityService {
         try {
             JSONResource json = resty.json(URL_BASE + "?searchTerm=" + URLEncoder.encode(search, "UTF-8") +
                     "&language=" + LANGUAGE + "&country=" + COUNTRY + "&categories=" + CATEGORIES + "&onlyBookableTrain=" + ONLY_BOOKABLE_TRAIN);
-            cities = parseLocalities((JSONArray) json.get("cities.localities"));
-            List<Locality> railwayStations = parseLocalities((JSONArray) json.get("railwayStations.localities"));
+
+            cities = parseLocalities(json.get("cities.localities"));
+            List<Locality> railwayStations = parseLocalities(json.get("railwayStations.localities"));
             cities.addAll(railwayStations);
             Collections.sort(cities, new LocalityComparator());
         } catch (Exception e) {
@@ -58,14 +59,18 @@ public class CityService {
         return new ArrayList<>(names);
     }
 
-    private List<Locality> parseLocalities(JSONArray localities) {
+    private List<Locality> parseLocalities(Object localities) {
+        JSONArray arrayLocalities = new JSONArray();
+        if (localities != null && !"null".equalsIgnoreCase(localities.toString())) {
+            arrayLocalities = (JSONArray) localities;
+        }
         List<Locality> cities = new ArrayList<>();
         try {
-            for (int i = 0; i < localities.length(); i++) {
-                JSONObject locality = localities.getJSONObject(i);
+            for (int i = 0; i < arrayLocalities.length(); i++) {
+                JSONObject locality = arrayLocalities.getJSONObject(i);
                 String score = locality.getString("score");
-                Number ddd = NumberFormat.getNumberInstance(Locale.ENGLISH).parse(score);
-                BigDecimal bgScore = new BigDecimal(ddd.toString());
+                Number number = NumberFormat.getNumberInstance(Locale.ENGLISH).parse(score);
+                BigDecimal bgScore = new BigDecimal(number.toString());
                 String name = locality.getString("name");
                 cities.add(new Locality(name, bgScore));
             }
