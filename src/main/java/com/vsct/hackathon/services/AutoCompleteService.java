@@ -74,12 +74,18 @@ public class AutoCompleteService {
                 } else {
                     if (!input.contains(">")) {
                         final ArrayList<String> originDests = new ArrayList<>();
+                        int cpt = 0;
                         for (String origin : origins) {
-                            if (!origin.toLowerCase().contains("paris")) {
-                                originDests.add(origin + " > Paris " + dateFormat.format(AutoCompleteUtils.getTomorrow()));
+                            if (cpt < 2) {
+                                originDests.add(origin);
                             } else {
-                                originDests.add(origin + " > Lyon " + dateFormat.format(AutoCompleteUtils.getTomorrow()));
+                                if (!origin.toLowerCase().contains("paris")) {
+                                    originDests.add(origin + " > Paris " + dateFormat.format(AutoCompleteUtils.getTomorrow()));
+                                } else {
+                                    originDests.add(origin + " > Lyon " + dateFormat.format(AutoCompleteUtils.getTomorrow()));
+                                }
                             }
+                            cpt++;
                         }
                         proposals.addAll(AutoCompleteUtils.convertListForSuggestion(originDests));
                     } else {
