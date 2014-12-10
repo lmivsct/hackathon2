@@ -33,7 +33,7 @@ public class AutoCompleteResource {
             }
         }
                       
-        suggests.add("\"Page d'aide\"");
+        suggests.add("\"Aide\"");
         responseBuilder.append(suggests.toString());
         responseBuilder.append("]");
 
