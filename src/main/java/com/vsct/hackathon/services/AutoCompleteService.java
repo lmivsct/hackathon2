@@ -84,19 +84,43 @@ public class AutoCompleteService {
                         proposals.addAll(AutoCompleteUtils.convertListForSuggestion(originDests));
                     } else {
                         if (!searchParameters.getOrigin().toLowerCase().contains("paris")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " Paris " + dateFormat.format(new Date()) + "\"");
+                            if (!searchParameters.getOrigin().contains(">")) {
+                                proposals.add("\"" + searchParameters.getOrigin() + " > Paris " + dateFormat.format(new Date()) + "\"");
+                            } else {
+                                proposals.add("\"" + searchParameters.getOrigin() + " Paris " + dateFormat.format(new Date()) + "\"");
+                            }
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("lyon")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " Lyon " + dateFormat.format(new Date()) + "\"");
+                            if (!searchParameters.getOrigin().contains(">")) {
+                                proposals.add("\"" + searchParameters.getOrigin() + " > Lyon " + dateFormat.format(new Date()) + "\"");
+                            } else {
+                                proposals.add("\"" + searchParameters.getOrigin() + " Lyon " + dateFormat.format(new Date()) + "\"");
+                            }
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("lille")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " Lille " + dateFormat.format(new Date()) + "\"");
+                            if (!searchParameters.getOrigin().contains(">")) {
+                                proposals.add("\"" + searchParameters.getOrigin() + " > Lille " + dateFormat.format(new Date()) + "\"");
+                            } else {
+                                proposals.add("\"" + searchParameters.getOrigin() + " Lille " + dateFormat.format(new Date()) + "\"");
+                            }
+
+                        } else {
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("nantes")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " Nantes " + dateFormat.format(new Date()) + "\"");
+                            if (!searchParameters.getOrigin().contains(">")) {
+
+                                proposals.add("\"" + searchParameters.getOrigin() + " > Nantes " + dateFormat.format(new Date()) + "\"");
+                            } else {
+                                proposals.add("\"" + searchParameters.getOrigin() + " Nantes " + dateFormat.format(new Date()) + "\"");
+                            }
                         }
                         if (!searchParameters.getOrigin().toLowerCase().contains("rennes")) {
-                            proposals.add("\"" + searchParameters.getOrigin() + " Rennes " + dateFormat.format(new Date()) + "\"");
+                            if (!searchParameters.getOrigin().contains(">")) {
+
+                                proposals.add("\"" + searchParameters.getOrigin() + " > Rennes " + dateFormat.format(new Date()) + "\"");
+                            } else {
+                                proposals.add("\"" + searchParameters.getOrigin() + " Rennes " + dateFormat.format(new Date()) + "\"");
+                            }
                         }
 
                     }
